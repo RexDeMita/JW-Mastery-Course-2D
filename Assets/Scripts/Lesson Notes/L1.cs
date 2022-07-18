@@ -24,6 +24,8 @@ public class L1 : MonoBehaviour
    QWERTY
       these keys on the keyboard correspond to the 6 hotkeys in the scene editor for panning, move, rotation, scale, rect, and transform tools
       
+   make sure textures are in full rect, tiled, and the pixels per unit are the same as the original image
+   
    
    */
    
