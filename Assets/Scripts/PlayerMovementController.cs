@@ -12,6 +12,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] float jumpForce = 400;
     Rigidbody2D _rigidBody2D;
     CharacterGrounding _characterGrounding;
+    public float Speed { get; private set; }
 
     void Awake()
     {
@@ -27,6 +28,9 @@ public class PlayerMovementController : MonoBehaviour
         //input on the x and y axes
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        //absolute value of the horizontal input 
+        Speed = Mathf.Abs(horizontal);
         
         //movement vector
         Vector3 movement = new Vector3(horizontal, vertical);
