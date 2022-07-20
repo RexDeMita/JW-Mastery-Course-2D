@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class L1 : MonoBehaviour
+namespace Lesson_Notes
 {
-   /*
+   public class L1Intro : MonoBehaviour
+   {
+      /*
    sprite sheet: an image that contains multiple smaller graphics
    
    sprite mode setting
@@ -29,4 +29,5 @@ public class L1 : MonoBehaviour
    
    */
    
+   }
 }
