@@ -6,14 +6,15 @@ using UnityEngine;
 //these components depend on each other so when one is added to an object, the other is added as well 
 [RequireComponent(typeof(CharacterGrounding))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour, IMove
 {
     [SerializeField] float moveSpeed = 2;
     [SerializeField] float jumpForce = 400;
     Rigidbody2D _rigidBody2D;
     CharacterGrounding _characterGrounding;
-    public float Speed { get; private set; }
 
+    //this is a member of the IMove interafce that can be used by other classes to get the Speed value set somewhere in this script
+    public float Speed { get; private set; }
     void Awake()
     {
         //rigidbody2D reference
@@ -46,4 +47,6 @@ public class PlayerMovementController : MonoBehaviour
         }
 
     }
+
+    
 }

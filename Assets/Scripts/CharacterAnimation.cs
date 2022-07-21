@@ -5,21 +5,21 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     Animator _animator;
-    PlayerMovementController _playerMovementController; 
+    IMove _mover; 
 
     void Awake()
     {
         //animator reference
         _animator = GetComponent<Animator>();
         
-        //playermovement controller reference
-        _playerMovementController = GetComponent<PlayerMovementController>(); 
+        //IMove interface reference
+        _mover = GetComponent<IMove>(); 
     }
 
     void Update()
     {
         //speed from player movement controller script
-        float speed = _playerMovementController.Speed;
+        float speed = _mover.Speed;
         
         //the parameter value is set. the run animation responds to this value by playing
         _animator.SetFloat("Speed", speed);    
