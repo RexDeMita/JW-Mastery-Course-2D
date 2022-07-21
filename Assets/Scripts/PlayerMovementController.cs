@@ -31,7 +31,7 @@ public class PlayerMovementController : MonoBehaviour, IMove
         float vertical = Input.GetAxis("Vertical");
 
         //absolute value of the horizontal input 
-        Speed = Mathf.Abs(horizontal);
+        Speed = horizontal;
         
         //movement vector
         Vector3 movement = new Vector3(horizontal, vertical);
