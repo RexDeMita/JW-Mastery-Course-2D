@@ -6,31 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class KillOnEnter : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        //player movement controller script reference
-        var playerMovementController = GetComponent<PlayerMovementController>();
+        //collider info from the player movement controller script reference
+        var playerMovementController = collision.collider.GetComponent<PlayerMovementController>();
         
         //if the player movement controller exists
         if (playerMovementController != null)
         {
-            //load the scene at index 0
-            SceneManager.LoadScene(0);
+            Debug.Log("there is a player");
+            //call the killPlayer method in the game manager class
+            GameManager.Instance.KillPlayer();
         }
-            
-
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
