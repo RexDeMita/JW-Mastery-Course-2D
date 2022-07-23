@@ -16,9 +16,18 @@ public class UILivesText : MonoBehaviour
     }
 
 
-    void Update()
+    void Start()
     {
-        //assigns a converted string of the value of Lives to tmproText
-        _tmproText.text = GameManager.Instance.Lives.ToString();
+        //registers an event
+        GameManager.Instance.OnLivesChanged += HandleOnLivesChanged;
+        
+        //this initializes the text to the correct value in Game Manager
+        _tmproText.text = GameManager.Instance.Lives.ToString(); 
+    }
+
+    void HandleOnLivesChanged(int livesRemaining)
+    {
+        //this updates the lives text 
+        _tmproText.text = livesRemaining.ToString(); 
     }
 }
