@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; set; }
     public int Lives { get; private set; }
 
-    //c sharp event of type int
-    public event Action<int> OnLivesChanged;  
+    int _coins; 
 
+    //c sharp event of type int for when the life value changes
+    public event Action<int> OnLivesChanged;  
+    
+    //c sharp event 
+    public event Action<int> OnCoinsChanged; 
     private void Awake()
     {
         //if there is an instance that exists, destroy this game object, otherwise
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
         Lives--; 
         
         //calling any registered events if they exist
-        if(OnLivesChanged != null)
+        if (OnLivesChanged != null)
             OnLivesChanged(Lives); 
         
         //if Lives are less than or equal to 0, restart the game
@@ -45,13 +49,30 @@ public class GameManager : MonoBehaviour
             RestartGame();
     }
 
+    public void AddCoin()
+    {
+        //increment coins
+        _coins++;
+        
+        //call any registered events if they exist with _coins as the input
+        if (OnCoinsChanged != null)
+            OnCoinsChanged(_coins);
+    }
     void RestartGame()
     {
         //set the lives 
         Lives = 3;
         
+        //initialize coin value when the game restarts
+        _coins = 0;
+        
+        //call any registered events if they exist
+        if (OnCoinsChanged != null)
+            OnCoinsChanged(_coins);
         
         //load the scene at index 0
         SceneManager.LoadScene(0);
     }
+
+   
 }

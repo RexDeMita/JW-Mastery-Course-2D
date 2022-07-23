@@ -11,6 +11,7 @@ public class L4 : MonoBehaviour
      
      game programming patterns by Robert Nystrom
      
-     
+     fonts carry settings from one TMP object to another
+        duplicate the font if you want to change the setting of a font
      */
 }
