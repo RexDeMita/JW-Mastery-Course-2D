@@ -47,6 +47,21 @@ public class GameManager : MonoBehaviour
         //if Lives are less than or equal to 0, restart the game
         if (Lives <= 0)
             RestartGame();
+        else
+            SendPlayerToCheckpoint(); 
+    }
+
+    void SendPlayerToCheckpoint()
+    {
+        //find and set a local variable with the checkpoint manager
+        var checkpointManager = FindObjectOfType<CheckpointManager>();
+        
+        //have the checkpoint manager get the last checkpoint passed
+        var checkpoint = checkpointManager.GetLastCheckpointThatWasPassed();
+        
+        //find and move the player
+        var player = FindObjectOfType<PlayerMovementController>();
+        player.transform.position = checkpoint.transform.position; 
     }
 
     public void AddCoin()
