@@ -6,11 +6,12 @@ using UnityEngine;
 
 public class UICoinsText : MonoBehaviour
 {
-    TextMeshProUGUI tmproText;
+    TextMeshProUGUI _tmproText;
+    Animator _animator;
 
     void Awake()
     {
-        tmproText = GetComponent<TextMeshProUGUI>();
+        _tmproText = GetComponent<TextMeshProUGUI>();
     }
 
     void Start()
@@ -22,7 +23,7 @@ public class UICoinsText : MonoBehaviour
     private void HandleOnCoinsChanged(int coins)
     {
         //sets the text of the coin UI
-        tmproText.text = coins.ToString();
+        _tmproText.text = coins.ToString();
     }
 
     
