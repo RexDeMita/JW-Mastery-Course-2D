@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,22 @@ public class CoinAudio : MonoBehaviour
     void Start()
     {
         //play audio source 
-        //this lambda expression necessitates a parameter but in this case, it is not used
-        //this is an alternative way of registering an event? instead of creating a method  
-        GameManager.Instance.OnCoinsChanged += (coins) => _audioSource.Play();
+        //this anonymous delegate necessitates a parameter but in this case, it is not used
+        //this is alternative syntax of registering an event? instead of creating a method  
+       //GameManager.Instance.OnCoinsChanged += (coins) => _audioSource.Play();
+       GameManager.Instance.OnCoinsChanged += PlayCoinAudio; 
     }
+    
+    //event deregistration when the object is destroyed
+    void OnDestroy()
+    {
+        GameManager.Instance.OnCoinsChanged -= PlayCoinAudio; 
+    }
+    
+    void PlayCoinAudio(int coins)
+    {
+        _audioSource.Play();
+    }
+    
+    
 }

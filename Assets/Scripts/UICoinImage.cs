@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class UICoinImage : MonoBehaviour
         _animator = GetComponent<Animator>();
         //when a coin is added, an event is registered
         GameManager.Instance.OnCoinsChanged += Pulse; 
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnCoinsChanged -= Pulse;
     }
 
     void Pulse(int coins)
