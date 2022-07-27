@@ -3355,8 +3355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 1903681243}
   end: {fileID: 979507891}
-  sprite: {fileID: 0}
-  _speed: 0
+  sprite: {fileID: 1531806336}
+  _speed: 1.61
 --- !u!1 &1998209114
 GameObject:
   m_ObjectHideFlags: 0
