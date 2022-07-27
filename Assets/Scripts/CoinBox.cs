@@ -15,7 +15,9 @@ public class CoinBox : MonoBehaviour
     void Awake()
     {
         remainingCoins = _totalCoins;
-        _animator = GetComponent<Animator>(); 
+        _animator = GetComponent<Animator>();
+        _enabledSprite.enabled = true;
+        _disabledSprite.enabled = false; 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
