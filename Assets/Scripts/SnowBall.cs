@@ -9,12 +9,20 @@ public class SnowBall : MonoBehaviour
     [SerializeField] Transform snowballSprite;
     
     float positionPercent;
-    int direction = 1; 
+    int direction = 1;
+    [SerializeField] [Range(0.1f, 10f)] float _speed;
 
     void Update()
     {
-        //increment or decrement the position percent every frame based on the current direction
-        positionPercent += Time.deltaTime * direction; 
+        //distance variable to calculate the right speed
+        float distance = Vector3.Distance(start.position, end.position);
+        
+        //speed divided by the distance. this will decide how small or large each step of the interpolation will be. 
+        //if this number is small the interpolations will also be small and the interpolation will take longer
+        float speedForDistance = _speed / distance; 
+        
+        //increment or decrement the position percent every frame based on the current direction and the speed/distance variable
+        positionPercent += Time.deltaTime * direction * speedForDistance; 
         
         //linear interpolation of the position of the sprite and collider from start position to the end position
         snowballSprite.position = Vector3.Lerp(start.position, end.position, positionPercent);
