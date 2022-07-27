@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowBall : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     [SerializeField] Transform start;
     [SerializeField] Transform end;
-    [SerializeField] Transform snowballSprite;
+    [SerializeField] Transform sprite;
     
     float positionPercent;
     int direction = 1;
@@ -25,7 +25,7 @@ public class SnowBall : MonoBehaviour
         positionPercent += Time.deltaTime * direction * speedForDistance; 
         
         //linear interpolation of the position of the sprite and collider from start position to the end position
-        snowballSprite.position = Vector3.Lerp(start.position, end.position, positionPercent);
+        sprite.position = Vector3.Lerp(start.position, end.position, positionPercent);
         
         //if the position percent is greater than or equal to 1 and the snowball is moving to the right
         if (positionPercent >= 1 && direction == 1)
