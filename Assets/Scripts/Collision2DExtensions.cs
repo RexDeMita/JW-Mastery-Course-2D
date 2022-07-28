@@ -13,4 +13,9 @@ public static class Collision2DExtensions
     {
         return collision.contacts[0].normal.y > 0.5;
     }
+
+    public static bool WasHitFromTop(this Collision2D collision)
+    {
+        return collision.contacts[0].normal.y < -0.5;
+    }
 }
