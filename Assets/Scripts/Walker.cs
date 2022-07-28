@@ -9,12 +9,14 @@ public class Walker : MonoBehaviour
     Collider2D _collider;
     Rigidbody2D _rigidbody2D;
     Vector2 direction = Vector2.left;
-     float _speed = 1f;
+    float _speed = 1f;
+    SpriteRenderer _spriteRenderer;
 
     void Awake()
     {
         _collider = GetComponent<Collider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
     //better for physics objects
@@ -60,5 +62,7 @@ public class Walker : MonoBehaviour
         //direction is flipped
         direction *= -1; 
         
+        //flip the sprite
+        _spriteRenderer.flipX = !_spriteRenderer.flipX; 
     }
 }
