@@ -190,7 +190,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4501464632941258125}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: {fileID: 4501464633027953093}
   end: {fileID: 4501464632259179131}
-  snowballSprite: {fileID: 4501464632883826256}
+  sprite: {fileID: 4501464632883826256}
   _speed: 0.1
 --- !u!1 &4501464633027953094
 GameObject:
