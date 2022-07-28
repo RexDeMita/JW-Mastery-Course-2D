@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     void SendPlayerToCheckpoint()
     {
+        //make sure there is a default checkpoint for the level so that the player does not have to collide with a checkpoint for this to work
+
         //find and set a local variable with the checkpoint manager
         var checkpointManager = FindObjectOfType<CheckpointManager>();
         

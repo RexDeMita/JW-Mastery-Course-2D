@@ -20,7 +20,6 @@ public class Walker : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
     }
     
     //better for physics objects
@@ -28,7 +27,6 @@ public class Walker : MonoBehaviour
     {
         //this moves the rigidbody of this object 
         _rigidbody2D.MovePosition(_rigidbody2D.position + direction * (_speed * Time.fixedDeltaTime));
-        Debug.Log(direction);
     }
 
     void LateUpdate()
@@ -39,8 +37,20 @@ public class Walker : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.WasHitByPlayer() && collision.WasHitFromTop())
-            HandleWalkerStomped();
+        //if the walker collides with a player
+        if (collision.WasHitByPlayer())
+        {
+            //if the collision was from the top
+            if (collision.WasHitFromTop())
+                //run the code for stomping on the walker
+                HandleWalkerStomped();
+            else
+            {
+                //kill the player
+                GameManager.Instance.KillPlayer();
+            }
+        }
+            
     }
 
     void HandleWalkerStomped()
@@ -50,7 +60,7 @@ public class Walker : MonoBehaviour
             Instantiate(spawnOnStompPrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
+    
     bool HitNotPlayer()
     {
         var x = GetForwardX();
@@ -61,7 +71,7 @@ public class Walker : MonoBehaviour
         //origin of the ray
         Vector2 origin = new Vector2(x, y); 
         
-        //the raycast seen in the editor pointing in the direction the snail is moving
+        //the raycast seen in the editor pointing in the direction the walker is moving
         Debug.DrawRay(origin, direction * 0.1f);
         
         //the raycast itself
@@ -97,9 +107,7 @@ public class Walker : MonoBehaviour
         
         //the raycast itself
         var hit = Physics2D.Raycast(origin, Vector2.down, 0.1f);
-        
-        Debug.Log(hit.collider);
-        
+
         if (hit.collider == null)
             return true;
         return false; 
