@@ -15,6 +15,8 @@ public class CharacterGrounding : MonoBehaviour
     
     //other classes can get the value, but not set it
     public bool IsGrounded { get; private set; }
+    
+    public Vector2 GroundedDirection { get; private set; }
 
     void Update()
     {
@@ -54,10 +56,10 @@ public class CharacterGrounding : MonoBehaviour
     void CheckFootForGrounding(Transform foot)
     {
         //ray cast hit on a collider that recognizes colliders that have the layer mask that is set in the inspector 
-        var rayCastHit = Physics2D.Raycast(foot.position, Vector2.down, _maxDistance, _layerMask);
+        var rayCastHit = Physics2D.Raycast(foot.position, foot.forward, _maxDistance, _layerMask);
         
         //debug ray that can be seen in the scene view
-        Debug.DrawRay(foot.position, Vector3.down * _maxDistance, Color.red);
+        Debug.DrawRay(foot.position, foot.forward * _maxDistance, Color.red);
         
         //if the ray cast hits a collider, especially the collider of the ground, the player is on the ground
         if (rayCastHit.collider != null)
@@ -75,6 +77,9 @@ public class CharacterGrounding : MonoBehaviour
                 //set the last position of the grounded object to the 
                 groundedObjectLastPosition = groundedObject.position;
             }
+            
+            //this sets the direction of the vector using the transform getting us the grounding
+            GroundedDirection = foot.forward; 
         }
         else
         {
