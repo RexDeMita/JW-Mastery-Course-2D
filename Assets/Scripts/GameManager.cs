@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; set; }
     public int Lives { get; private set; }
 
-    int _coins; 
+    int _coins;
+
+    int currentLevelIndex; 
 
     //c sharp event of type int for when the life value changes
     public event Action<int> OnLivesChanged;  
@@ -75,6 +77,16 @@ public class GameManager : MonoBehaviour
         if (OnCoinsChanged != null)
             OnCoinsChanged(_coins);
     }
+
+    public void MoveToNextLevel()
+    {
+        //increment to the next index
+        currentLevelIndex++;
+        
+        //load the scene indicated by current level index
+        SceneManager.LoadScene(currentLevelIndex); 
+    }
+    
     void RestartGame()
     {
         //set the lives 
