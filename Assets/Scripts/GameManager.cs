@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
     
     void RestartGame()
     {
+        //initialize the scene index to 0
+        currentLevelIndex = 0; 
+        
         //set the lives 
         Lives = 3;
         
