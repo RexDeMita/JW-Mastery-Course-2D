@@ -48,5 +48,9 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
     }
 
-    
+    //this method is being called by the walker script
+    public void Bounce()
+    {
+        _rigidBody2D.AddForce(Vector2.up * jumpForce);
+    }
 }

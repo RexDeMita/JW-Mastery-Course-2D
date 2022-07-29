@@ -43,7 +43,7 @@ public class Walker : MonoBehaviour
             //if the collision was from the top
             if (collision.WasHitFromTop())
                 //run the code for stomping on the walker
-                HandleWalkerStomped();
+                HandleWalkerStomped(collision.collider.GetComponent<PlayerMovementController>());
             else
             {
                 //kill the player
@@ -53,11 +53,14 @@ public class Walker : MonoBehaviour
             
     }
 
-    void HandleWalkerStomped()
+    void HandleWalkerStomped(PlayerMovementController playerMovementController)
     {
         //if there is a prefab, instantiate it
         if (spawnOnStompPrefab != null)
             Instantiate(spawnOnStompPrefab, transform.position, transform.rotation);
+
+        playerMovementController.Bounce();
+        
         Destroy(gameObject);
     }
     

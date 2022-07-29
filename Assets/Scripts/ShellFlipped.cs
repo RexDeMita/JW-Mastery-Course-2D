@@ -28,11 +28,17 @@ public class ShellFlipped : MonoBehaviour
         //if the shell collides with the player
         if (collision.WasHitByPlayer())
         {
+            //get player reference
+            var playerMovementController = collision.collider.GetComponent<PlayerMovementController>();
+            
             //if the shell is not moving. vector magnitude is 0
             if (direction.magnitude == 0)
             {
                 //launch the shell based on the collision data
                 LaunchShell(collision);
+                
+                //call the bounce method in the player script
+                playerMovementController.Bounce();
             }
             else
             {
@@ -41,6 +47,9 @@ public class ShellFlipped : MonoBehaviour
                 {
                     //stop the shell movement, set the vector to 0,0
                     direction = Vector2.zero;
+
+                    //call the bounce method in the player script
+                    playerMovementController.Bounce();
                 }
                 else
                 {
