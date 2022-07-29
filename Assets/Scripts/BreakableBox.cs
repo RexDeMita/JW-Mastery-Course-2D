@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableBox : MonoBehaviour
+public class BreakableBox : MonoBehaviour, ITakeShellHits
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,5 +13,10 @@ public class BreakableBox : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void HandleShellHit(ShellFlipped shellFlipped)
+    {
+        Destroy(gameObject);
     }
 }

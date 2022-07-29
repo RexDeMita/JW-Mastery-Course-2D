@@ -38,12 +38,12 @@ public class ShellFlipped : MonoBehaviour
             {
                 LaunchShell(collision);
                 
-                //get a reference to the breakable box component on the item to be broken
-                var breakable = collision.collider.GetComponent<BreakableBox>();
+                //get a reference to the interface on the item to be broken
+                var takeShellHits = collision.collider.GetComponent<ITakeShellHits>();
                 
-                //if that reference exists, destroy the game object that that component is attached to
-                if (breakable != null)
-                    Destroy(breakable.gameObject);
+                //if that reference exists, destroy the game object that that component is attached to by calling the method in the item 
+                if (takeShellHits != null)
+                    takeShellHits.HandleShellHit(this);
             }
                 
         }
