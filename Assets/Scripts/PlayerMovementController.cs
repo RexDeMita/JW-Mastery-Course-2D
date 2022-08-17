@@ -24,6 +24,23 @@ public class PlayerMovementController : MonoBehaviour, IMove
         _characterGrounding = GetComponent<CharacterGrounding>();
     }
 
+    void Update()
+    {
+        //if Fire1 is pressed this frame
+        if (Input.GetButtonDown("Fire1") && _characterGrounding.IsGrounded)
+        {
+            //force added to the rigidbody in the up direction multiplied by a jump force that can be edited in the inspector
+            _rigidBody2D.AddForce(Vector2.up * jumpForce);
+            
+            //if the direction of the ray cast is not straight down, but coming from the sides indicating a landing on the side of the wall
+            if (_characterGrounding.GroundedDirection != Vector2.down)
+            {
+                //force added to the rigidbody in the oppositie direction of the jump multiplied by a jump force that can be edited in the inspector
+                _rigidBody2D.AddForce(_characterGrounding.GroundedDirection * -1f * jumpForce);
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         //input on the x and y axes
@@ -38,15 +55,11 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
         //movement in space based on a vector and multipliers
         transform.position += movement * (Time.deltaTime * moveSpeed);
-
-        //if Fire1 is pressed this frame
-        if (Input.GetButtonDown("Fire1") && _characterGrounding.IsGrounded)
-        {
-            //force added to the rigidbody in the up direction multiplied by a jump force that can be edited in the inspector
-            _rigidBody2D.AddForce(Vector2.up * jumpForce);
-        }
-
     }
 
-    
+    //this method is being called by the walker script
+    public void Bounce()
+    {
+        _rigidBody2D.AddForce(Vector2.up * jumpForce);
+    }
 }
